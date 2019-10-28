@@ -311,8 +311,10 @@ PyObject* camera_get_image (PyCameraObject* self, PyObject* arg) {
         return NULL;
 
     if (surf->w != self->width || surf->h != self->height) {
+        char s2[50];
+    	  sprintf(s2, "Destination surface not the correct width or height: w=%i h=%i", surf->w, surf->h);
         return RAISE (PyExc_ValueError,
-                      "Destination surface not the correct width or height.");
+                      s2);
     }
 
     Py_BEGIN_ALLOW_THREADS;
